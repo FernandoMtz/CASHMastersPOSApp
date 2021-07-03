@@ -72,7 +72,7 @@ namespace POSChangeCalculator
             while(sumOfBillsAndCoins != amountToReturn)
             {
                 // As denominations come in an array and go from lower values to higher values, we iterate the denominations from the end to the beginning.
-                for(int i = denominations.Length -1; i>= 0; i--)
+                for(int i = denominations.Length - 1; i>= 0; i--)
                 {
                     // Check if the current sum and the current denomination added will be less or equal than the expected amount to return.
                     if((sumOfBillsAndCoins + denominations[i]) <= amountToReturn)
@@ -80,9 +80,7 @@ namespace POSChangeCalculator
                         //Add the current denomination (bill or coin) to the list and sum it to the amount counter to keep track of the value.
                         listOfBillsAndCoins.Add(denominations[i]);
                         sumOfBillsAndCoins += denominations[i];
-
-                        if(sumOfBillsAndCoins == amountToReturn)
-                            break;
+                        break;
                     }
                 }
             }
