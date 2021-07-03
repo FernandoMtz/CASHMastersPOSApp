@@ -8,7 +8,7 @@ namespace POSChangeCalculator
     public class POSChangeCalculator
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        public List<double> ReturnOptimalChange(double itemPrice, double[] cash)
+        public List<decimal> ReturnOptimalChange(decimal itemPrice, decimal[] cash)
         {
             try
             {
@@ -20,17 +20,17 @@ namespace POSChangeCalculator
                 // Obtain current value in file with the Key (DenominationCountry)
                 string denominationCountry = configuration["DenominationCountry"];
                 //Obtain denomination Array from using configured country.
-                double[] denominationArray = GlobalDenominations.ObtainDenominationsByCountry(denominationCountry);
+                decimal[] denominationArray = GlobalDenominations.ObtainDenominationsByCountry(denominationCountry);
 
                 // Create a List to store the Bills and coins that will be the optimal change to return.
-                List<double> changeList = new List<double>();
+                List<decimal> changeList = new List<decimal>();
                 // Calculate the cashAmount provided by customer;
-                double cashAmount = CalculateCashAmount(cash);
+                decimal cashAmount = CalculateCashAmount(cash);
                 // Validate if the Cash provided is greater or equal than the price of the item being purchased.
                 if(cashAmount >= itemPrice)
                 {
                     //First step is to calculate the change to be returned to the customer.
-                    double changeAmount =  cashAmount - itemPrice;
+                    decimal changeAmount =  cashAmount - itemPrice;
                     // Second is to obtain the list of denominations for the currency being used.
                     changeList = ObtainListOfBillsAndCoins(changeAmount,denominationArray);
                 }
@@ -52,22 +52,22 @@ namespace POSChangeCalculator
 
 
         //Function used to calculate the total amount provided in cash.
-        private double CalculateCashAmount(double[] cash)
+        private decimal CalculateCashAmount(decimal[] cash)
         {
-            double cashAmount = 0;
-            foreach(double cashUnit in cash)
+            decimal cashAmount = 0;
+            foreach(decimal cashUnit in cash)
             {
                 cashAmount += cashUnit;
             }
             return cashAmount;
         }
 
-        private List<double> ObtainListOfBillsAndCoins(double amountToReturn, double[] denominations)
+        private List<decimal> ObtainListOfBillsAndCoins(decimal amountToReturn, decimal[] denominations)
         {
             //Create List of bills and coins to be returned.
-            List<double> listOfBillsAndCoins = new List<double>();
+            List<decimal> listOfBillsAndCoins = new List<decimal>();
             //Create variable to count the amount currently being held by adding the bills and coins
-            double sumOfBillsAndCoins = 0;
+            decimal sumOfBillsAndCoins = 0;
             //We repeat the procedure until the sum of the items in the list of bills and coins is the exact same amount to return to the customer.
             while(sumOfBillsAndCoins != amountToReturn)
             {
@@ -79,7 +79,7 @@ namespace POSChangeCalculator
                     {
                         //Add the current denomination (bill or coin) to the list and sum it to the amount counter to keep track of the value.
                         listOfBillsAndCoins.Add(denominations[i]);
-                        sumOfBillsAndCoins =+ denominations[i];
+                        sumOfBillsAndCoins += denominations[i];
 
                         if(sumOfBillsAndCoins == amountToReturn)
                             break;

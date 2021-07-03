@@ -5,7 +5,7 @@ namespace  POSChangeCalculator
 public static class GlobalDenominations
 {
     // Current valid countries string values are: Mexico, US
-    public static double [] ObtainDenominationsByCountry(string countryName)
+    public static decimal [] ObtainDenominationsByCountry(string countryName)
     {
         switch(countryName)
         {
@@ -16,14 +16,14 @@ public static class GlobalDenominations
             default: return MexicoDenominations();
         }
     }
-    private static double[] MexicoDenominations()
+    private static decimal[] MexicoDenominations()
     {
-        return new double[] {0.05, 0.10, 0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00, 50.00, 100.00};
+        return new decimal[] {0.05m, 0.10m, 0.20m, 0.50m, 1.00m, 2.00m, 5.00m, 10.00m, 20.00m, 50.00m, 100.00m};
     }
 
-    private static double[] USDenominations()
+    private static decimal[] USDenominations()
     {
-        return new double[] {0.01, 0.05, 0.10, 0.25, 0.50, 1.00, 2.00, 5.00, 10.00, 20.00, 50.00, 100.00};
+        return new decimal[] {0.01m, 0.05m, 0.10m, 0.25m, 0.50m, 1.00m, 2.00m, 5.00m, 10.00m, 20.00m, 50.00m, 100.00m};
     }
 }
 

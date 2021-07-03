@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using NLog;
@@ -10,16 +11,16 @@ namespace POSChangeCalculator
     {
         static void Main(string[] args)
         {
-            double itemPrice = 100;
-            double[] cashProvided = new double[]{200};       
+            decimal itemPrice = 192.05m;
+            decimal[] cashProvided = new decimal[]{200m};       
 
             POSChangeCalculator calculator = new POSChangeCalculator();
-            List<double> changeReturned = calculator.ReturnOptimalChange(itemPrice, cashProvided);
+            List<decimal> changeReturned = 
+                calculator.ReturnOptimalChange(itemPrice, cashProvided)
+                .OrderByDescending(x=> x)
+                .ToList();
 
-            foreach(double c in changeReturned)
-            {
-                Console.WriteLine(c);
-            }
+            Console.WriteLine("["+ string.Join(",",changeReturned) + "]");
         }
 
     }
