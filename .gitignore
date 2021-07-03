@@ -1,7 +1,3 @@
 POSChangeCalculator/bin
 POSChangeCalculator/obj
 .gitignore
-POSChangeCalculator/bin/Debug/net5.0/POSChangeCalculator.dll
-POSChangeCalculator/bin/Debug/net5.0/POSChangeCalculator.pdb
-POSChangeCalculator/obj/Debug/net5.0/POSChangeCalculator.dll
-POSChangeCalculator/obj/Debug/net5.0/POSChangeCalculator.pdb
