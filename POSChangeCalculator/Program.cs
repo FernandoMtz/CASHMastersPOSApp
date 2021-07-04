@@ -15,6 +15,7 @@ namespace POSChangeCalculator
             decimal[] cashProvided = new decimal[]{200m};       
 
             POSChangeCalculator calculator = new POSChangeCalculator();
+
             List<decimal> changeReturned = 
                 calculator.ReturnOptimalChange(itemPrice, cashProvided)
                 .OrderByDescending(x=> x)
