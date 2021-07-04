@@ -5,7 +5,7 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using NLog;
 
-namespace POSChangeCalculator
+namespace CashMastersPOS
 {
     class Program
     {

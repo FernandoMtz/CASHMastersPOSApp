@@ -1,6 +1,6 @@
 using System;
 
-namespace  POSChangeCalculator
+namespace  CashMastersPOS
 {
 public static class GlobalDenominations
 {
