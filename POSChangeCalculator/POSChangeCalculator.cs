@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using NLog;
+using System.Linq;
 namespace CashMastersPOS
 {
     public class POSChangeCalculator
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        public List<decimal> ReturnOptimalChange(decimal itemPrice, decimal[] cash)
+        public decimal[] ReturnOptimalChange(decimal itemPrice, decimal[] cash)
         {
             try
             {
@@ -23,7 +24,7 @@ namespace CashMastersPOS
                 decimal[] denominationArray = GlobalDenominations.ObtainDenominationsByCountry(denominationCountry);
 
                 // Create a List to store the Bills and coins that will be the optimal change to return.
-                List<decimal> changeList = new List<decimal>();
+                decimal[] changeList = null;
                 // Calculate the cashAmount provided by customer;
                 decimal cashAmount = CalculateCashAmount(cash);
                 // Validate if the Cash provided is greater or equal than the price of the item being purchased.
@@ -62,7 +63,7 @@ namespace CashMastersPOS
             return cashAmount;
         }
 
-        private List<decimal> ObtainListOfBillsAndCoins(decimal amountToReturn, decimal[] denominations)
+        private decimal[] ObtainListOfBillsAndCoins(decimal amountToReturn, decimal[] denominations)
         {
             //Create List of bills and coins to be returned.
             List<decimal> listOfBillsAndCoins = new List<decimal>();
@@ -71,6 +72,13 @@ namespace CashMastersPOS
             //We repeat the procedure until the sum of the items in the list of bills and coins is the exact same amount to return to the customer.
             while(sumOfBillsAndCoins != amountToReturn)
             {
+                //Calculate the difference between the amount of bills and coins currently calculated agains the change to return
+                decimal difference = (amountToReturn - sumOfBillsAndCoins);
+                //If the difference is less than the smaller denomination in the array break the cycle and throw and exception.
+                if(difference < denominations.Min())
+                {
+                    throw new Exception("There is no denomination available to return the exact amount expected.");
+                }
                 // As denominations come in an array and go from lower values to higher values, we iterate the denominations from the end to the beginning.
                 for(int i = denominations.Length - 1; i>= 0; i--)
                 {
@@ -85,7 +93,7 @@ namespace CashMastersPOS
                 }
             }
             // return the list of bills and coins used to match the right amount.
-            return listOfBillsAndCoins;
+            return listOfBillsAndCoins.ToArray();
         }
     }
 }
