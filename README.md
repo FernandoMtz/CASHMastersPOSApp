@@ -1,6 +1,6 @@
 # CASH Masters POS App
 
-Point of Sale Application that calculates the optimal money change (the less amount bills and coins) to return using a cash register.
+Point of Sale Application that calculates the optimal money change (the less amount bills and coins) to return when using a cash register.
 
 ## Purpose
 
