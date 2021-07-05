@@ -40,7 +40,6 @@ namespace CashMastersPOS
             // Display the output in an array format
             Console.WriteLine("The optimal change of Bills and coins should be the following: ");
             Console.WriteLine("["+ string.Join(",",changeReturned) + "]");
-
             Console.ReadLine();
         }
 
