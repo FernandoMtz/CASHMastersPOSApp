@@ -74,10 +74,11 @@ namespace CashMastersPOS
             {
                 //Calculate the difference between the amount of bills and coins currently calculated agains the change to return
                 decimal difference = (amountToReturn - sumOfBillsAndCoins);
+                decimal minimumDenomination = denominations.Min();
                 //If the difference is less than the smaller denomination in the array break the cycle and throw and exception.
-                if(difference < denominations.Min())
+                if(difference < minimumDenomination)
                 {
-                    throw new Exception("There is no denomination available to return the exact amount expected.");
+                    throw new Exception($"There is no denomination available to return the exact amount expected. The required denomination is: ${difference} and the minimum denomination for the selected country is: {minimumDenomination}");
                 }
                 // As denominations come in an array and go from lower values to higher values, we iterate the denominations from the end to the beginning.
                 for(int i = denominations.Length - 1; i>= 0; i--)

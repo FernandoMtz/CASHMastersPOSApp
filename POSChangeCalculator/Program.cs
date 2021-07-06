@@ -9,9 +9,9 @@ namespace CashMastersPOS
         {
             // Instructions
             Console.WriteLine("This is a testing application for the POS Change Calculator.");
-            Console.WriteLine("In order to test the function, youll need to provide the following Inputs:");
+            Console.WriteLine("In order to test the function, you'll need to provide the following Inputs:");
 
-            Console.WriteLine("1) Provide the price of the Item to be paid (Only numbers): ");
+            Console.WriteLine("1) Provide the price of the item to be paid (Only numbers): ");
             // Read the price as an input string
             var priceText = Console.ReadLine();
 

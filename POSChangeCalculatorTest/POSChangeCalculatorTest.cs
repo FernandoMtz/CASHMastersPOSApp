@@ -9,7 +9,7 @@ namespace POSChangeCalculatorTest
     public class Tests
     {
 
-// Test basic functionallity by providing 1 bill and expecting 1 bill
+        // Test basic functionallity by providing 1 bill and expecting 1 bill
         [Test]
         public void TestBasicFuncitonallity()
         {
@@ -23,7 +23,7 @@ namespace POSChangeCalculatorTest
 
             Assert.AreEqual(expectedValue,resultSum);
         }
-// Test multiple denominations as input to pay the item. 
+        // Test multiple denominations as input to pay the item. 
         [Test]
         public void TestMultipleInputDenominations()
         {
@@ -37,7 +37,7 @@ namespace POSChangeCalculatorTest
 
             Assert.AreEqual(expectedValue,resultSum);
         }
-//Test multiple denominations as outputs to make sure the result is optimal
+        //Test multiple denominations as outputs to make sure the result is optimal
         [Test]
         public void TestMultipleOutputDenominations()
         {
@@ -54,7 +54,7 @@ namespace POSChangeCalculatorTest
             // Test that the result sum is the same
             Assert.AreEqual(expectedValue,resultSum);
         }
-//Test that input and output denominations are multiple
+        //Test that input and output denominations are multiple
          [Test]
         public void TestMultipleOutputInputDenominations()
         {
@@ -68,7 +68,7 @@ namespace POSChangeCalculatorTest
 
             Assert.AreEqual(expectedValue,resultSum);
         }
-// Test that Empty input array is provided.
+        // Test that Empty input array is provided.
          [Test]
         public void TestEmptyInputArray()
         {
@@ -80,7 +80,7 @@ namespace POSChangeCalculatorTest
 
             Assert.IsNull(result);
         }
-// Test when the change due has a value that cannot be returned exactly using the available denominations
+        // Test when the change due has a value that cannot be returned exactly using the available denominations
            [Test]
         public void TestInexistingDenomination()
         {
@@ -97,12 +97,12 @@ namespace POSChangeCalculatorTest
                 var configuration = builder.Build();
                 // Obtain current value in file with the Key (DenominationCountry)
                 string denominationCountry = configuration["DenominationCountry"];
-                // If denomination country is set to mexico the value should be null as there is no currently a denomination that handles 0.01
+            // If denomination country is set to mexico the value should be null as there is no currently a denomination that handles 0.01
                 if(denominationCountry == "Mexico")
                 {
                      Assert.IsNull(result);
                 }
-                // If denomination country is set to US (which is currently the other denomination available) the value should be the expected because there is a denomination that returns 0.01 in the US
+            // If denomination country is set to US (which is currently the other denomination available) the value should be the expected because there is a denomination that returns 0.01 in the US
                 else
                 {           
                     decimal expectedValue = 7.01m;
