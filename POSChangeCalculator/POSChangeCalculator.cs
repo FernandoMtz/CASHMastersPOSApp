@@ -39,6 +39,7 @@ namespace CashMastersPOS
                 {
                     Exception exception = new Exception("The amount of cash given isn't greater or equal than the price of the item. Please provide a sufficient amount.");
                     logger.Error(exception, "Not enough money was provdied to pay for the Item");
+                    throw exception;
                 }
               
                 return changeList;
@@ -47,7 +48,6 @@ namespace CashMastersPOS
             {
                 logger.Error(ex, "An exception ocurred when trying to Calculate the Optimal Change.");
                 Console.WriteLine("An exception ocurred when trying to Calculate the Optimal Change. The exception message is the following: " + ex.Message +", Stack Trace:  " + ex.StackTrace);
-                throw ex;
             }
             return null;
         }
