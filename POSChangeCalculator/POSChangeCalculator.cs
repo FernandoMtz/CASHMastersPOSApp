@@ -47,6 +47,7 @@ namespace CashMastersPOS
             {
                 logger.Error(ex, "An exception ocurred when trying to Calculate the Optimal Change.");
                 Console.WriteLine("An exception ocurred when trying to Calculate the Optimal Change. The exception message is the following: " + ex.Message +", Stack Trace:  " + ex.StackTrace);
+                throw ex;
             }
             return null;
         }
